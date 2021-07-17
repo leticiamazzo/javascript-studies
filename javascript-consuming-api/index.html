@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main></main>
+</body>
+
+<script>
+    // fetch é uma API que existe no navegador e consegue se comunicar com qualquer lugar que quiser. Mas não é imediato. Então ele "promete" (promise) que vai até o endereço que pede e, assim que conseguir, volta. Toda "promessa" precida ser "esperada / aguardada" (await)
+    // Lendo const response = await fetch('http://localhost:4567'): eu espero (await) o fetch fazer o que tem que fazer e, quando terminar, pego uma resposta
+    // Mas await só funciona dentro de uma funcionalidade assíncrona, por isso coloca await dentro
+    // Se response trouxer não funcionar como esperado e trazer um erro, ele deve ser capturado pelo try/ catch. Tente (try) esperar a resposta dessa promessa e, se não de certo, capture o erro e exibindo o. Quando a resposta chega, espera que ela seja transformada em json, pois o conteúdo que quer está dentro de response.body.
+
+    async function getContent() {
+        try {
+            const response = await fetch('http://localhost:4567')
+
+            // console.log(response)
+
+            const data = await response.json()
+            // console.log(data);
+            show(data)
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    getContent()
+
+    function show(users) {
+        let output= ''
+
+        for (let user of users) {
+            output += `<li>${ user.name }</li>`
+        }
+
+        document.querySelector('main').innerHTML = output
+    }
+
+</script>
+</html>
