@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">
+        Click Me!
+    </button>
+
+    <script>
+        // // THIS
+
+        // com função normal => this pega o contexto do próprio botão
+        // 
+        // const btn = document.getElementById('btn');
+        // btn.addEventListener('click', function() {
+        //     console.log(this)
+        // })
+        
+
+        // com arrow function => this pega o contexto de toda a window
+        // const btn = document.getElementById('btn')
+        // btn.addEventListener('click', () => console.log(this))
+
+        // const sandwich = {
+        //     bread: 'white',
+        //     cheese: 'cheddar',
+        
+        //     prepare: function() {
+        //         return `I want a sandwich with ${sandwich.bread} bread and ${sandwich.cheese}`
+        //     },
+
+        //     make: function() {
+        //         window.setTimeout(() => {
+        //             console.log(this.prepare());
+        //         }, 500)
+        //     }
+        // }
+        // const btn = document.getElementById('btn')
+        // btn.addEventListener('click', function () {
+        //     sandwich.make()
+        // })
+
+        // // THIS
+
+
+
+        // // TEMPLATE LITERAL
+            function renderAuthor(name) {
+                return name ? name : 'unknow'
+            }
+
+        const article = {
+            title: 'Aprendendo tmeplate string',
+            tags: ['es6', 'js', 'template-literal'],
+            author: 'Willian'
+        }
+
+        const markup = `
+            <article>
+                <header>
+                    <h1>${article.title}</h1>
+                </header>
+
+                <footer>
+                    <ul>
+                        ${article.tags.map(tag => `<li>${tag}</li>`).join('')}
+                    </ul>
+                    <p>Author: ${renderAuthor(article.author)}</p>
+                </footer>
+            </article>
+        `
+
+        document.body.innerHTML = markup
+        // // TEMPLATE LITERAL
+
+
+    </script>
+</body>
+</html>
