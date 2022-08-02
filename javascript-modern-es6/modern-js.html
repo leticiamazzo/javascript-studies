@@ -50,35 +50,69 @@
 
 
         // // TEMPLATE LITERAL
-            function renderAuthor(name) {
-                return name ? name : 'unknow'
-            }
+        //     function renderAuthor(name) {
+        //         return name ? name : 'unknow'
+        //     }
 
-        const article = {
-            title: 'Aprendendo tmeplate string',
-            tags: ['es6', 'js', 'template-literal'],
-            author: 'Willian'
-        }
+        // const article = {
+        //     title: 'Aprendendo tmeplate string',
+        //     tags: ['es6', 'js', 'template-literal'],
+        //     author: 'Willian'
+        // }
 
-        const markup = `
-            <article>
-                <header>
-                    <h1>${article.title}</h1>
-                </header>
+        // const markup = `
+        //     <article>
+        //         <header>
+        //             <h1>${article.title}</h1>
+        //         </header>
 
-                <footer>
-                    <ul>
-                        ${article.tags.map(tag => `<li>${tag}</li>`).join('')}
-                    </ul>
-                    <p>Author: ${renderAuthor(article.author)}</p>
-                </footer>
-            </article>
-        `
+        //         <footer>
+        //             <ul>
+        //                 ${article.tags.map(tag => `<li>${tag}</li>`).join('')}
+        //             </ul>
+        //             <p>Author: ${renderAuthor(article.author)}</p>
+        //         </footer>
+        //     </article>
+        // `
 
-        document.body.innerHTML = markup
+        // document.body.innerHTML = markup
         // // TEMPLATE LITERAL
 
 
+
+        // // TAGGED TEMPLATE
+        const city = 'São Paulo'
+        const country = 'Brazil'
+        const continent = 'South America'
+
+        function green(template, ...values) {
+            // debugger
+            // // accumulator = o que fica concatenando sempre
+            // // part = valores que sobram do texto depois do `value`
+            // // value = valor que quer modificar
+            // // i = contador
+            return template.reduce((accumulator, part, i) => {
+                console.log(part);
+                return `
+                    ${accumulator}
+                    <span class="green">${values[i - 1].toUpperCase()}<span>
+                    ${part}
+                `
+            })
+        }
+
+        const phrase = green`I'm from ${city}, ${country}'s city  at ${continent}.`
+
+        document.body.innerHTML = phrase
+        // // TAGGED TEMPLATE
+
     </script>
+
+    <style>
+        .green{
+            color: green;
+            font-size: 25px;
+        }
+    </style>
 </body>
 </html>
